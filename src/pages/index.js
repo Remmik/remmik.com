@@ -10,7 +10,8 @@ class Index extends React.Component {
         return (
             <div style={{ alignSelf: 'flex-start' }}>
                 <Helmet title={siteTitle} />
-                Remmik
+                <h1 className="title">Remmik</h1>
+                <p className="info">CVR: 39483882 <span className="seperator">&bull;</span> <a href="tel:+45585080">+45 31 58 50 80</a></p>
             </div>
         )
     }

@@ -5,7 +5,6 @@ html, body {
     background: #0000FF;
     color: #fff;
     text-align: center;
-    font-size: 70px;
     height: 100%;
 }
 
@@ -13,4 +12,23 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.title {
+    font-size: 70px;
+    margin-bottom: 5px;
+}
+
+.info {
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.info a {
+    color: #fff;
+}
+
+.seperator {
+    padding: 0 15px;
 }
