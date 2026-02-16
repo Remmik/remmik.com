@@ -1,0 +1,91 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 480px;
+  font-family: var(--font-inter);
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+
+.input,
+.textarea {
+  padding: 0.75rem 1rem;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  color: var(--contact-text);
+  font-size: 1rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: rgba(0, 0, 255, 0.35);
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: rgba(0, 0, 255, 0.5);
+  background: rgba(0, 0, 255, 0.08);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.button {
+  align-self: flex-start;
+  padding: 0.75rem 2.5rem;
+  background: var(--contact-text);
+  color: var(--contact-bg);
+  font-family: var(--font-inter);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 6px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.button:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #cc0000;
+  font-size: 0.875rem;
+}
+
+.success {
+  font-family: var(--font-inter);
+  font-size: 1.125rem;
+  opacity: 0.9;
+}

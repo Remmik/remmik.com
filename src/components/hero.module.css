@@ -1,0 +1,61 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--hero-bg);
+  color: var(--hero-text);
+  text-align: center;
+  position: relative;
+}
+
+.content {
+  padding: 2rem;
+}
+
+.title {
+  font-family: var(--font-playfair);
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.info {
+  font-family: var(--font-inter);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--hero-muted);
+}
+
+.info a {
+  transition: color 0.2s;
+}
+
+.info a:hover {
+  color: var(--hero-text);
+}
+
+.separator {
+  padding: 0 1rem;
+}
+
+.scrollCue {
+  position: absolute;
+  bottom: 2rem;
+  color: var(--hero-muted);
+  animation: bounce 2s ease-in-out infinite;
+  transition: color 0.2s;
+}
+
+.scrollCue:hover {
+  color: var(--hero-text);
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
