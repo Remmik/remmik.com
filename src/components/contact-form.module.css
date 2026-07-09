@@ -7,14 +7,6 @@
   font-family: var(--font-inter);
 }
 
-.honeypot {
-  position: absolute;
-  left: -9999px;
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
-}
-
 .field {
   display: flex;
   flex-direction: column;

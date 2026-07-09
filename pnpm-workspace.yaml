@@ -1,4 +1,2 @@
 allowBuilds:
   sharp: true
-minimumReleaseAgeExclude:
-  - resend@6.17.2

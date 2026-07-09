@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./contact-form.module.css";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
@@ -8,11 +8,6 @@ type FormStatus = "idle" | "submitting" | "success" | "error";
 export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMsg, setErrorMsg] = useState("");
-  const mountedAt = useRef(0);
-
-  useEffect(() => {
-    mountedAt.current = Date.now();
-  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -20,29 +15,20 @@ export function ContactForm() {
     setErrorMsg("");
 
     const form = e.currentTarget;
-    const data = new FormData(form);
-
-    const payload = {
-      name: data.get("name") as string,
-      email: data.get("email") as string,
-      message: data.get("message") as string,
-      website: data.get("website") as string, // honeypot
-      loadedAt: mountedAt.current,
-    };
+    const formData = new FormData(form);
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as never).toString(),
       });
 
       if (res.ok) {
         setStatus("success");
         form.reset();
       } else {
-        const body = await res.json().catch(() => null);
-        setErrorMsg(body?.error ?? "Something went wrong. Please try again.");
+        setErrorMsg("Something went wrong. Please try again.");
         setStatus("error");
       }
     } catch {
@@ -60,18 +46,21 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      {/* Honeypot — hidden from real users */}
-      <div aria-hidden className={styles.honeypot}>
-        <label htmlFor="website">Website</label>
-        <input
-          type="text"
-          id="website"
-          name="website"
-          tabIndex={-1}
-          autoComplete="off"
-        />
-      </div>
+    <form
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      onSubmit={handleSubmit}
+      className={styles.form}
+    >
+      <input type="hidden" name="form-name" value="contact" />
+
+      <p hidden>
+        <label>
+          Don&#8217;t fill this out: <input name="bot-field" />
+        </label>
+      </p>
 
       <div className={styles.field}>
         <label htmlFor="name" className={styles.label}>
